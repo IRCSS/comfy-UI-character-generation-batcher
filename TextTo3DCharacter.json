@@ -320,7 +320,7 @@
   },
   "189": {
     "inputs": {
-      "image": "DWPose.png"
+      "image": "MiximoRig (1).png"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -364,6 +364,766 @@
     "class_type": "Save Image",
     "_meta": {
       "title": "Save Image"
+    }
+  },
+  "203": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "resize_source": false,
+      "destination": [
+        "212",
+        0
+      ],
+      "source": [
+        "245",
+        0
+      ],
+      "mask": [
+        "247",
+        1
+      ]
+    },
+    "class_type": "ImageCompositeMasked",
+    "_meta": {
+      "title": "ImageCompositeMasked"
+    }
+  },
+  "204": {
+    "inputs": {
+      "trimesh": [
+        "220",
+        0
+      ]
+    },
+    "class_type": "Hy3DMeshUVWrap",
+    "_meta": {
+      "title": "Hy3D Mesh UV Wrap"
+    }
+  },
+  "205": {
+    "inputs": {
+      "images": [
+        "248",
+        1
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "207": {
+    "inputs": {
+      "texture": [
+        "208",
+        0
+      ],
+      "renderer": [
+        "215",
+        2
+      ]
+    },
+    "class_type": "Hy3DApplyTexture",
+    "_meta": {
+      "title": "Hy3D Apply Texture"
+    }
+  },
+  "208": {
+    "inputs": {
+      "inpaint_radius": 3,
+      "inpaint_method": "ns",
+      "texture": [
+        "215",
+        0
+      ],
+      "mask": [
+        "215",
+        1
+      ]
+    },
+    "class_type": "CV2InpaintTexture",
+    "_meta": {
+      "title": "CV2 Inpaint Texture"
+    }
+  },
+  "209": {
+    "inputs": {
+      "images": [
+        "215",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image: vertex inpainted texture"
+    }
+  },
+  "212": {
+    "inputs": {
+      "mask": [
+        "223",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "213": {
+    "inputs": {
+      "images": [
+        "248",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "214": {
+    "inputs": {
+      "images": [
+        "238",
+        0
+      ],
+      "renderer": [
+        "248",
+        2
+      ],
+      "camera_config": [
+        "240",
+        0
+      ]
+    },
+    "class_type": "Hy3DBakeFromMultiview",
+    "_meta": {
+      "title": "Hy3D Bake From Multiview"
+    }
+  },
+  "215": {
+    "inputs": {
+      "texture": [
+        "214",
+        0
+      ],
+      "mask": [
+        "214",
+        1
+      ],
+      "renderer": [
+        "214",
+        2
+      ]
+    },
+    "class_type": "Hy3DMeshVerticeInpaintTexture",
+    "_meta": {
+      "title": "Hy3D Mesh Vertice Inpaint Texture"
+    }
+  },
+  "218": {
+    "inputs": {
+      "mode": "base",
+      "use_jit": true
+    },
+    "class_type": "TransparentBGSession+",
+    "_meta": {
+      "title": "🔧 InSPyReNet TransparentBG"
+    }
+  },
+  "219": {
+    "inputs": {
+      "mask": [
+        "247",
+        1
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "220": {
+    "inputs": {
+      "remove_floaters": true,
+      "remove_degenerate_faces": true,
+      "reduce_faces": true,
+      "max_facenum": 50000,
+      "smooth_normals": false,
+      "trimesh": [
+        "236",
+        0
+      ]
+    },
+    "class_type": "Hy3DPostprocessMesh",
+    "_meta": {
+      "title": "Hy3D Postprocess Mesh"
+    }
+  },
+  "223": {
+    "inputs": {
+      "value": 0.8,
+      "width": 512,
+      "height": 512
+    },
+    "class_type": "SolidMask",
+    "_meta": {
+      "title": "SolidMask"
+    }
+  },
+  "224": {
+    "inputs": {
+      "model": "hunyuan3d-paint-v2-0"
+    },
+    "class_type": "DownloadAndLoadHy3DPaintModel",
+    "_meta": {
+      "title": "(Down)Load Hy3D PaintModel"
+    }
+  },
+  "229": {
+    "inputs": {
+      "images": [
+        "232",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image: Multiview results"
+    }
+  },
+  "230": {
+    "inputs": {
+      "images": [
+        "214",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image: Initial baked texture"
+    }
+  },
+  "231": {
+    "inputs": {
+      "images": [
+        "208",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image: fully inpainted texture"
+    }
+  },
+  "232": {
+    "inputs": {
+      "view_size": 512,
+      "steps": 25,
+      "seed": 2,
+      "denoise_strength": 1,
+      "pipeline": [
+        "224",
+        0
+      ],
+      "ref_image": [
+        "285",
+        0
+      ],
+      "normal_maps": [
+        "248",
+        0
+      ],
+      "position_maps": [
+        "248",
+        1
+      ],
+      "camera_config": [
+        "240",
+        0
+      ],
+      "scheduler": [
+        "237",
+        0
+      ]
+    },
+    "class_type": "Hy3DSampleMultiView",
+    "_meta": {
+      "title": "Hy3D Sample MultiView"
+    }
+  },
+  "233": {
+    "inputs": {
+      "model": "hunyuan3d-delight-v2-0"
+    },
+    "class_type": "DownloadAndLoadHy3DDelightModel",
+    "_meta": {
+      "title": "(Down)Load Hy3D DelightModel"
+    }
+  },
+  "235": {
+    "inputs": {
+      "scheduler": "Euler A",
+      "sigmas": "default",
+      "pipeline": [
+        "233",
+        0
+      ]
+    },
+    "class_type": "Hy3DDiffusersSchedulerConfig",
+    "_meta": {
+      "title": "Hy3D Diffusers Scheduler Config"
+    }
+  },
+  "236": {
+    "inputs": {
+      "box_v": 1.01,
+      "octree_resolution": 384,
+      "num_chunks": 32000,
+      "mc_level": 0,
+      "mc_algo": "mc",
+      "enable_flash_vdm": true,
+      "force_offload": true,
+      "vae": [
+        "244",
+        1
+      ],
+      "latents": [
+        "246",
+        0
+      ]
+    },
+    "class_type": "Hy3DVAEDecode",
+    "_meta": {
+      "title": "Hy3D VAE Decode"
+    }
+  },
+  "237": {
+    "inputs": {
+      "scheduler": "Euler A",
+      "sigmas": "default",
+      "pipeline": [
+        "224",
+        0
+      ]
+    },
+    "class_type": "Hy3DDiffusersSchedulerConfig",
+    "_meta": {
+      "title": "Hy3D Diffusers Scheduler Config"
+    }
+  },
+  "238": {
+    "inputs": {
+      "width": 2048,
+      "height": 2048,
+      "interpolation": "lanczos",
+      "method": "stretch",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "232",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "240": {
+    "inputs": {
+      "camera_azimuths": "0, 90, 180, 270, 0, 180",
+      "camera_elevations": "0, 0, 0, 0, 90, -90",
+      "view_weights": "1, 0.1, 0.5, 0.1, 0.05, 0.05",
+      "camera_distance": 1.45,
+      "ortho_scale": 1.2
+    },
+    "class_type": "Hy3DCameraConfig",
+    "_meta": {
+      "title": "Hy3D Camera Config"
+    }
+  },
+  "244": {
+    "inputs": {
+      "model": "hunyuan3d-dit-v2-0-fp16.safetensors",
+      "attention_mode": "sdpa",
+      "cublas_ops": false
+    },
+    "class_type": "Hy3DModelLoader",
+    "_meta": {
+      "title": "Hy3DModelLoader"
+    }
+  },
+  "245": {
+    "inputs": {
+      "width": 518,
+      "height": 518,
+      "interpolation": "lanczos",
+      "method": "pad",
+      "condition": "always",
+      "multiple_of": 2,
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "246": {
+    "inputs": {
+      "guidance_scale": 5.5,
+      "steps": 50,
+      "seed": 123,
+      "scheduler": "FlowMatchEulerDiscreteScheduler",
+      "force_offload": false,
+      "pipeline": [
+        "244",
+        0
+      ],
+      "image": [
+        "245",
+        0
+      ],
+      "mask": [
+        "247",
+        1
+      ]
+    },
+    "class_type": "Hy3DGenerateMesh",
+    "_meta": {
+      "title": "Hy3DGenerateMesh"
+    }
+  },
+  "247": {
+    "inputs": {
+      "rembg_session": [
+        "218",
+        0
+      ],
+      "image": [
+        "245",
+        0
+      ]
+    },
+    "class_type": "ImageRemoveBackground+",
+    "_meta": {
+      "title": "🔧 Image Remove Background"
+    }
+  },
+  "248": {
+    "inputs": {
+      "render_size": 1024,
+      "texture_size": 2048,
+      "normal_space": "world",
+      "trimesh": [
+        "204",
+        0
+      ],
+      "camera_config": [
+        "240",
+        0
+      ]
+    },
+    "class_type": "Hy3DRenderMultiView",
+    "_meta": {
+      "title": "Hy3D Render MultiView"
+    }
+  },
+  "249": {
+    "inputs": {
+      "steps": 50,
+      "width": 512,
+      "height": 512,
+      "cfg_image": 0,
+      "seed": 0,
+      "delight_pipe": [
+        "233",
+        0
+      ],
+      "image": [
+        "203",
+        0
+      ],
+      "scheduler": [
+        "235",
+        0
+      ]
+    },
+    "class_type": "Hy3DDelightImage",
+    "_meta": {
+      "title": "Hy3DDelightImage"
+    }
+  },
+  "250": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "interpolation": "nearest",
+      "method": "stretch",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "247",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "263": {
+    "inputs": {
+      "string_a": [
+        "195",
+        0
+      ],
+      "string_b": [
+        "192",
+        0
+      ],
+      "delimiter": "/"
+    },
+    "class_type": "StringConcatenate",
+    "_meta": {
+      "title": "Concatenate"
+    }
+  },
+  "264": {
+    "inputs": {
+      "model_file": [
+        "265",
+        0
+      ],
+      "image": ""
+    },
+    "class_type": "Preview3D",
+    "_meta": {
+      "title": "Preview 3D"
+    }
+  },
+  "265": {
+    "inputs": {
+      "filename_prefix": [
+        "263",
+        0
+      ],
+      "file_format": "glb",
+      "save_file": true,
+      "trimesh": [
+        "207",
+        0
+      ]
+    },
+    "class_type": "Hy3DExportMesh",
+    "_meta": {
+      "title": "Hy3DExportMesh"
+    }
+  },
+  "266": {
+    "inputs": {
+      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\output\\DefaultName_00007_.glb",
+      "anything": [
+        "265",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Show Any"
+    }
+  },
+  "268": {
+    "inputs": {
+      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\blender_tools\\exampleBlendFiles\\meshCleanUpExampleConfig.config"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "269": {
+    "inputs": {
+      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\blender_tools\\exampleBlendFiles\\MeshCleanUp.blend"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "272": {
+    "inputs": {
+      "output": "",
+      "source": [
+        "276",
+        0
+      ]
+    },
+    "class_type": "Display Any (rgthree)",
+    "_meta": {
+      "title": "Display Any (rgthree)"
+    }
+  },
+  "273": {
+    "inputs": {
+      "blend_file": [
+        "269",
+        0
+      ],
+      "input_model": [
+        "265",
+        0
+      ],
+      "config_file": [
+        "268",
+        0
+      ],
+      "seed": 1787381225
+    },
+    "class_type": "BlenderGenericNode",
+    "_meta": {
+      "title": "Blender Generic Runner"
+    }
+  },
+  "274": {
+    "inputs": {
+      "text": "\n"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "275": {
+    "inputs": {
+      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\blender_tools\\exampleBlendFiles\\SimpleRig.blend"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "276": {
+    "inputs": {
+      "blend_file": [
+        "275",
+        0
+      ],
+      "input_model": [
+        "273",
+        0
+      ],
+      "config_file": [
+        "274",
+        0
+      ],
+      "seed": 3876872451
+    },
+    "class_type": "BlenderGenericNode",
+    "_meta": {
+      "title": "Blender Generic Runner"
+    }
+  },
+  "277": {
+    "inputs": {
+      "output": "",
+      "source": [
+        "276",
+        1
+      ]
+    },
+    "class_type": "Display Any (rgthree)",
+    "_meta": {
+      "title": "Display Any (rgthree)"
+    }
+  },
+  "278": {
+    "inputs": {
+      "output": "",
+      "source": [
+        "273",
+        0
+      ]
+    },
+    "class_type": "Display Any (rgthree)",
+    "_meta": {
+      "title": "Display Any (rgthree)"
+    }
+  },
+  "279": {
+    "inputs": {
+      "output": "",
+      "source": [
+        "273",
+        1
+      ]
+    },
+    "class_type": "Display Any (rgthree)",
+    "_meta": {
+      "title": "Display Any (rgthree)"
+    }
+  },
+  "285": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "resize_source": false,
+      "destination": [
+        "286",
+        0
+      ],
+      "source": [
+        "250",
+        0
+      ],
+      "mask": [
+        "247",
+        1
+      ]
+    },
+    "class_type": "ImageCompositeMasked",
+    "_meta": {
+      "title": "ImageCompositeMasked"
+    }
+  },
+  "286": {
+    "inputs": {
+      "mask": [
+        "287",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "287": {
+    "inputs": {
+      "value": 0.8,
+      "width": 512,
+      "height": 512
+    },
+    "class_type": "SolidMask",
+    "_meta": {
+      "title": "SolidMask"
+    }
+  },
+  "288": {
+    "inputs": {
+      "images": [
+        "285",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
     }
   }
 }
