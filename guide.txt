@@ -1,0 +1,5 @@
+to activate the env in power shell first Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+then & "[pathToFolder]]\venv\Scripts\Activate.ps1"
+
+
+to run the gui, run python gui.py

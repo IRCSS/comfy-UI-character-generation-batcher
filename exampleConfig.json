@@ -1,0 +1,14 @@
+{
+  "characters": [
+    {
+      "name": "Elf Warrior",
+      "prompt": "A tall elf warrior in silver armor, fantasy style",
+      "runs": 2
+    },
+    {
+      "name": "Cyberpunk Hacker",
+      "prompt": "A young cyberpunk hacker with neon lights",
+      "runs": 1
+    }
+  ]
+}

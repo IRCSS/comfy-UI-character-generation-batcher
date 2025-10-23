@@ -1,0 +1,369 @@
+{
+  "6": {
+    "inputs": {
+      "text": [
+        "102",
+        0
+      ],
+      "clip": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "13",
+        0
+      ],
+      "vae": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "10": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "11": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp16.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "12": {
+    "inputs": {
+      "unet_name": "flux1-dev.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "13": {
+    "inputs": {
+      "noise": [
+        "25",
+        0
+      ],
+      "guider": [
+        "22",
+        0
+      ],
+      "sampler": [
+        "16",
+        0
+      ],
+      "sigmas": [
+        "17",
+        0
+      ],
+      "latent_image": [
+        "183",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "16": {
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  },
+  "17": {
+    "inputs": {
+      "scheduler": "sgm_uniform",
+      "steps": 35,
+      "denoise": 1,
+      "model": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  },
+  "22": {
+    "inputs": {
+      "model": [
+        "61",
+        0
+      ],
+      "conditioning": [
+        "106",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "BasicGuider"
+    }
+  },
+  "25": {
+    "inputs": {
+      "noise_seed": [
+        "100",
+        0
+      ]
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "55": {
+    "inputs": {
+      "value": 2
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "Seed"
+    }
+  },
+  "60": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "61": {
+    "inputs": {
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": 512,
+      "height": 512,
+      "model": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingFlux",
+    "_meta": {
+      "title": "ModelSamplingFlux"
+    }
+  },
+  "92": {
+    "inputs": {
+      "positive": "a young woman with a dark pants and white formal shirt"
+    },
+    "class_type": "easy positive",
+    "_meta": {
+      "title": "Prompt"
+    }
+  },
+  "100": {
+    "inputs": {
+      "mode": "Random",
+      "fixed_seed": 8008135
+    },
+    "class_type": "SeedGenerator",
+    "_meta": {
+      "title": "SeedGenerator"
+    }
+  },
+  "102": {
+    "inputs": {
+      "delimiter": ", ",
+      "clean_whitespace": "false",
+      "text_a": [
+        "92",
+        0
+      ],
+      "text_b": [
+        "103",
+        0
+      ]
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "103": {
+    "inputs": {
+      "positive": "natural diffuse lighting, solid color background, T pose "
+    },
+    "class_type": "easy positive",
+    "_meta": {
+      "title": "Additional Includes"
+    }
+  },
+  "104": {
+    "inputs": {
+      "control_net_name": "flux-cn-pro-2.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "Load ControlNet Model"
+    }
+  },
+  "105": {
+    "inputs": {
+      "type": "openpose",
+      "control_net": [
+        "104",
+        0
+      ]
+    },
+    "class_type": "SetUnionControlNetType",
+    "_meta": {
+      "title": "SetUnionControlNetType"
+    }
+  },
+  "106": {
+    "inputs": {
+      "strength": 0.85,
+      "start_percent": 0,
+      "end_percent": 0.65,
+      "positive": [
+        "60",
+        0
+      ],
+      "negative": [
+        "107",
+        0
+      ],
+      "control_net": [
+        "105",
+        0
+      ],
+      "image": [
+        "189",
+        0
+      ],
+      "vae": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet"
+    }
+  },
+  "107": {
+    "inputs": {
+      "text": "",
+      "clip": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "138": {
+    "inputs": {
+      "value": 1024
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "Desired Height"
+    }
+  },
+  "183": {
+    "inputs": {
+      "width": [
+        "138",
+        0
+      ],
+      "height": [
+        "138",
+        0
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "189": {
+    "inputs": {
+      "image": "DWPose.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "192": {
+    "inputs": {
+      "value": "DefaultName"
+    },
+    "class_type": "easy string",
+    "_meta": {
+      "title": "CharacterName"
+    }
+  },
+  "195": {
+    "inputs": {
+      "value": "D:\\ComfyUI_windows_portable\\ComfyUI\\output"
+    },
+    "class_type": "easy string",
+    "_meta": {
+      "title": "OutPutPath"
+    }
+  },
+  "198": {
+    "inputs": {
+      "Folder_Name": [
+        "195",
+        0
+      ],
+      "File_Name_Prefix": [
+        "192",
+        0
+      ],
+      "Save_Metadata": true,
+      "Images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "Save Image",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}
