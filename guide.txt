@@ -1,5 +1,8 @@
 to activate the env in power shell first Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 then & "[pathToFolder]]\venv\Scripts\Activate.ps1"
 
+to install dependenceis in case you dont have them (though they are in the embedded python) pip install -r requirements.txt
 
 to run the gui, run python gui.py
+
+to build, run "python -m PyInstaller --noconfirm --onefile --windowed --name "CharacterBatcher" gui.py" once the enviroment is activated and the path is set.pip install pyinstaller

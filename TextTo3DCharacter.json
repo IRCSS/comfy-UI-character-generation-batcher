@@ -338,32 +338,11 @@
   },
   "195": {
     "inputs": {
-      "value": "D:\\ComfyUI_windows_portable\\ComfyUI\\output"
+      "value": "D:\\ComfyUI_windows_portable\\ComfyUI\\output\\btachProcess2"
     },
     "class_type": "easy string",
     "_meta": {
       "title": "OutPutPath"
-    }
-  },
-  "198": {
-    "inputs": {
-      "Folder_Name": [
-        "195",
-        0
-      ],
-      "File_Name_Prefix": [
-        "192",
-        0
-      ],
-      "Save_Metadata": true,
-      "Images": [
-        "8",
-        0
-      ]
-    },
-    "class_type": "Save Image",
-    "_meta": {
-      "title": "Save Image"
     }
   },
   "203": {
@@ -927,7 +906,7 @@
   },
   "266": {
     "inputs": {
-      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\output\\DefaultName_00007_.glb",
+      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\output\\btachProcess2\\DefaultName_00002_.glb",
       "anything": [
         "265",
         0
@@ -940,7 +919,7 @@
   },
   "268": {
     "inputs": {
-      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\blender_tools\\exampleBlendFiles\\meshCleanUpExampleConfig.config"
+      "text": "exampleBlendFiles\\meshCleanUpExampleConfig.config"
     },
     "class_type": "Text Multiline",
     "_meta": {
@@ -949,7 +928,7 @@
   },
   "269": {
     "inputs": {
-      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\blender_tools\\exampleBlendFiles\\MeshCleanUp.blend"
+      "text": "exampleBlendFiles\\MeshCleanUp.blend"
     },
     "class_type": "Text Multiline",
     "_meta": {
@@ -983,7 +962,7 @@
         "268",
         0
       ],
-      "seed": 1787381225
+      "seed": 2239454898
     },
     "class_type": "BlenderGenericNode",
     "_meta": {
@@ -1001,7 +980,7 @@
   },
   "275": {
     "inputs": {
-      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\blender_tools\\exampleBlendFiles\\SimpleRig.blend"
+      "text": "exampleBlendFiles\\SimpleRig.blend"
     },
     "class_type": "Text Multiline",
     "_meta": {
@@ -1022,7 +1001,7 @@
         "274",
         0
       ],
-      "seed": 3876872451
+      "seed": 3943328433
     },
     "class_type": "BlenderGenericNode",
     "_meta": {
@@ -1124,6 +1103,22 @@
     "class_type": "PreviewImage",
     "_meta": {
       "title": "Preview Image"
+    }
+  },
+  "289": {
+    "inputs": {
+      "filename_prefix": [
+        "263",
+        0
+      ],
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
     }
   }
 }
