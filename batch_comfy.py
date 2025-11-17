@@ -6,6 +6,11 @@ import copy
 
 COMFY_API = "http://127.0.0.1:8188"
 
+def _concat_prompts(*parts: str) -> str:
+    """Join prompt parts with a single space, skipping empties and trimming."""
+    cleaned = [p.strip() for p in parts if isinstance(p, str) and p.strip()]
+    return " ".join(cleaned)
+
 
 def queue_workflow(config_path, workflow_path, output_dir, log_func=None):
     """Batch-queues ComfyUI workflows directly via the /prompt API."""
@@ -28,7 +33,11 @@ def queue_workflow(config_path, workflow_path, output_dir, log_func=None):
 
     if "characters" not in config:
         raise ValueError("Config file must contain a 'characters' array.")
-
+    
+    base_additional = config.get("base_additional_prompt", "")
+    if base_additional is not None and not isinstance(base_additional, str):
+        raise ValueError("'base_additional_prompt' must be a string if provided.")
+    
     # --- Load Workflow (exported in API format) ---
     if not os.path.exists(workflow_path):
         raise FileNotFoundError(f"Workflow file not found: {workflow_path}")
@@ -53,7 +62,10 @@ def queue_workflow(config_path, workflow_path, output_dir, log_func=None):
         prompt_text = character.get("prompt", "")
         runs = int(character.get("runs", 1))
 
+        # Build final prompt: character prompt + shared base addition
+        final_prompt = _concat_prompts(prompt_text, base_additional)
         log(f"🎨 Starting generation for '{name}' ({runs} runs)...")
+        log(f"   ➜ Prompt: {final_prompt}")
 
         for i in range(runs):
             # Handle both wrapped and unwrapped API exports
@@ -67,7 +79,7 @@ def queue_workflow(config_path, workflow_path, output_dir, log_func=None):
 
                 # Easy-Use positive prompt
                 if ctype == "easy positive" or title == "prompt":
-                    node["inputs"]["positive"] = prompt_text
+                    node["inputs"]["positive"] = final_prompt
 
                 # Easy-Use output path
                 elif ctype == "easy string" and title == "outputpath":

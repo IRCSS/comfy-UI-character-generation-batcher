@@ -1,4 +1,5 @@
 {
+  "base_additional_prompt": ", T-pose, studio lighting, clean background, full body",
   "characters": [
     {
       "name": "Elf Warrior",

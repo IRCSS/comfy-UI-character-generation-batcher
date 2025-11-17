@@ -121,7 +121,7 @@
         0
       ],
       "conditioning": [
-        "106",
+        "60",
         0
       ]
     },
@@ -182,7 +182,7 @@
   },
   "92": {
     "inputs": {
-      "positive": "a young woman with a skirt and blue t shirt"
+      "positive": "City archives"
     },
     "class_type": "easy positive",
     "_meta": {
@@ -197,72 +197,6 @@
     "class_type": "SeedGenerator",
     "_meta": {
       "title": "SeedGenerator"
-    }
-  },
-  "104": {
-    "inputs": {
-      "control_net_name": "flux-cn-pro-2.safetensors"
-    },
-    "class_type": "ControlNetLoader",
-    "_meta": {
-      "title": "Load ControlNet Model"
-    }
-  },
-  "105": {
-    "inputs": {
-      "type": "openpose",
-      "control_net": [
-        "104",
-        0
-      ]
-    },
-    "class_type": "SetUnionControlNetType",
-    "_meta": {
-      "title": "SetUnionControlNetType"
-    }
-  },
-  "106": {
-    "inputs": {
-      "strength": 0.85,
-      "start_percent": 0,
-      "end_percent": 0.65,
-      "positive": [
-        "60",
-        0
-      ],
-      "negative": [
-        "107",
-        0
-      ],
-      "control_net": [
-        "105",
-        0
-      ],
-      "image": [
-        "189",
-        0
-      ],
-      "vae": [
-        "10",
-        0
-      ]
-    },
-    "class_type": "ControlNetApplyAdvanced",
-    "_meta": {
-      "title": "Apply ControlNet"
-    }
-  },
-  "107": {
-    "inputs": {
-      "text": "",
-      "clip": [
-        "11",
-        0
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
     }
   },
   "138": {
@@ -289,15 +223,6 @@
     "class_type": "EmptyLatentImage",
     "_meta": {
       "title": "Empty Latent Image"
-    }
-  },
-  "189": {
-    "inputs": {
-      "image": "MiximoRig (1).png"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "Load Image"
     }
   },
   "192": {
@@ -772,7 +697,7 @@
   },
   "266": {
     "inputs": {
-      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\output\\test2\\Test2_00010_.glb",
+      "text": "D:\\ComfyUI_windows_portable\\ComfyUI\\output\\test2\\Test2_00009_.glb",
       "anything": [
         "265",
         0
@@ -801,19 +726,6 @@
       "title": "Text Multiline"
     }
   },
-  "272": {
-    "inputs": {
-      "output": "",
-      "source": [
-        "276",
-        0
-      ]
-    },
-    "class_type": "Display Any (rgthree)",
-    "_meta": {
-      "title": "Display Any (rgthree)"
-    }
-  },
   "273": {
     "inputs": {
       "blend_file": [
@@ -828,63 +740,11 @@
         "268",
         0
       ],
-      "seed": 27961933
+      "seed": 1026763085
     },
     "class_type": "BlenderGenericNode",
     "_meta": {
       "title": "Blender Generic Runner"
-    }
-  },
-  "274": {
-    "inputs": {
-      "text": "\n"
-    },
-    "class_type": "Text Multiline",
-    "_meta": {
-      "title": "Text Multiline"
-    }
-  },
-  "275": {
-    "inputs": {
-      "text": "exampleBlendFiles\\SimpleRig.blend"
-    },
-    "class_type": "Text Multiline",
-    "_meta": {
-      "title": "Text Multiline"
-    }
-  },
-  "276": {
-    "inputs": {
-      "blend_file": [
-        "275",
-        0
-      ],
-      "input_model": [
-        "273",
-        0
-      ],
-      "config_file": [
-        "274",
-        0
-      ],
-      "seed": 2068490839
-    },
-    "class_type": "BlenderGenericNode",
-    "_meta": {
-      "title": "Blender Generic Runner"
-    }
-  },
-  "277": {
-    "inputs": {
-      "output": "",
-      "source": [
-        "276",
-        1
-      ]
-    },
-    "class_type": "Display Any (rgthree)",
-    "_meta": {
-      "title": "Display Any (rgthree)"
     }
   },
   "278": {

@@ -1,0 +1,191 @@
+{
+  "base_additional_prompt": " building in medival port town, made from dark wood and dark stones, poor neighborhood, drone shot",
+  "characters": [
+    {
+      "name": "Town hall",
+      "prompt": "Town hall",
+      "runs": 1
+    },
+    {
+      "name": "Courthouse",
+      "prompt": "Courthouse",
+      "runs": 1
+    },
+    {
+      "name": "City archives",
+      "prompt": "City archives ",
+      "runs": 1
+    },
+    {
+      "name": "Watchtower",
+      "prompt": "Watchtower",
+      "runs": 1
+    },
+    {
+      "name": "Treasury",
+      "prompt": "Treasury",
+      "runs": 1
+    },
+    {
+      "name": "Mayors residence",
+      "prompt": "Mayor’s residence",
+      "runs": 1
+    },
+    {
+      "name": "Public bathhouse",
+      "prompt": "Public bathhouse",
+      "runs": 1
+    },
+    {
+      "name": "Granary",
+      "prompt": "Granary",
+      "runs": 1
+    },
+    {
+      "name": "Church",
+      "prompt": "Church",
+      "runs": 1
+    },
+    {
+      "name": "Cathedral",
+      "prompt": "Cathedral",
+      "runs": 1
+    },
+    {
+      "name": "Shrine",
+      "prompt": "Shrine",
+      "runs": 1
+    },
+    {
+      "name": "Wizards tower",
+      "prompt": "Wizard’s tower",
+      "runs": 1
+    },
+    {
+      "name": "Bakery",
+      "prompt": "Bakery",
+      "runs": 1
+    },
+    {
+      "name": "Butcher shop",
+      "prompt": "Butcher shop",
+      "runs": 1
+    },
+    {
+      "name": "Fishmonger",
+      "prompt": "Fishmonger",
+      "runs": 1
+    },
+    {
+      "name": "General store",
+      "prompt": "General store",
+      "runs": 1
+    },
+    {
+      "name": "Apothecary",
+      "prompt": "Apothecary",
+      "runs": 1
+    },
+    {
+      "name": "Alchemists shop",
+      "prompt": "Alchemist’s shop",
+      "runs": 1
+    },
+    {
+      "name": "Herbalist",
+      "prompt": "Herbalist",
+      "runs": 1
+    },
+    {
+      "name": "Blacksmith forge",
+      "prompt": "Blacksmith forge",
+      "runs": 1
+    },
+    {
+      "name": "Armory",
+      "prompt": "Armory",
+      "runs": 1
+    },
+    {
+      "name": "Market stall cluster",
+      "prompt": "Market stall cluster",
+      "runs": 1
+    },
+    {
+      "name": "Inn",
+      "prompt": "Inn",
+      "runs": 3
+    },
+    {
+      "name": "Brewery",
+      "prompt": "Brewery",
+      "runs": 1
+    },
+    {
+      "name": "Theatre",
+      "prompt": "Theatre",
+      "runs": 1
+    },
+    {
+      "name": "Gambling den",
+      "prompt": "Gambling den",
+      "runs": 1
+    },
+    {
+      "name": "Lumber mill",
+      "prompt": "Lumber mill",
+      "runs": 1
+    },
+    {
+      "name": "Foundry",
+      "prompt": "Foundry",
+      "runs": 1
+    },
+    {
+      "name": "Farmers house",
+      "prompt": "Farmer’s house",
+      "runs": 1
+    },
+    {
+      "name": "Merchants house",
+      "prompt": "Merchant’s house",
+      "runs": 1
+    },
+    {
+      "name": "Noble manor",
+      "prompt": "Noble manor",
+      "runs": 1
+    },
+    {
+      "name": "Riverside cottage",
+      "prompt": "Riverside cottage",
+      "runs": 3
+    },
+    {
+      "name": "Multi-family townhouse",
+      "prompt": "Multi-family townhouse",
+      "runs": 3
+    },
+    {
+      "name": "Warehouse",
+      "prompt": "Warehouse",
+      "runs": 3
+    },
+    {
+      "name": "Boathouse",
+      "prompt": "Boathouse",
+      "runs": 1
+    },
+    {
+      "name": "Lighthouse",
+      "prompt": "Lighthouse",
+      "runs": 3
+    },
+    {
+      "name": "house",
+      "prompt": "house",
+      "runs": 3
+    }
+
+  ]
+}
