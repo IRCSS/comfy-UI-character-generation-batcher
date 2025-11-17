@@ -71,6 +71,7 @@ def queue_workflow(config_path, workflow_path, output_dir, log_func=None):
             # Handle both wrapped and unwrapped API exports
             prompt_data = base_prompt.get("prompt", base_prompt)
             prompt = copy.deepcopy(prompt_data)
+            run_name = f"{name}_{i}"
 
             # --- Update Easy-Use nodes ---
             for node_id, node in prompt.items():
@@ -87,7 +88,7 @@ def queue_workflow(config_path, workflow_path, output_dir, log_func=None):
 
                 # Easy-Use character name
                 elif ctype == "easy string" and title == "charactername":
-                    node["inputs"]["value"] = name
+                    node["inputs"]["value"] = run_name
 
             # --- Send to ComfyUI ---
             data = {"prompt": prompt}
@@ -95,13 +96,13 @@ def queue_workflow(config_path, workflow_path, output_dir, log_func=None):
 
             if response.status_code == 200:
                 rid = response.json().get("prompt_id", "unknown")
-                log(f"✅ Queued '{name}' (run {i+1}) | prompt_id: {rid}")
+                log(f"✅ Queued '{run_name}' (run {i+1}) | prompt_id: {rid}")
             else:
-                log(f"❌ Failed to queue '{name}' (run {i+1}): {response.status_code} {response.text}")
+                log(f"❌ Failed to queue '{run_name}' (run {i+1}): {response.status_code} {response.text}")
 
             time.sleep(0.3)
 
-        log(f"✅ Finished all runs for '{name}'\n")
+        log(f"✅ Finished all runs for '{run_name}'\n")
 
     log("🎉 All jobs queued successfully!\n")
 
