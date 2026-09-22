@@ -207,7 +207,7 @@ class BatcherApp:
         root.geometry("820x820")
         root.minsize(720, 700)
         self.parameters: list[dict[str, Any]] = []
-        self.presets: dict[str, dict[str, str]] = {}
+        self.presets: dict[str, dict[str, Any]] = {}
         self.settings: dict[str, Any] | None = None
         self.settings_error: str | None = None
         self.comfy_process = None
@@ -282,7 +282,9 @@ class BatcherApp:
         self.preset_combo = ttk.Combobox(group, textvariable=self.preset_var, state="readonly")
         self.preset_combo.grid(row=0, column=1, columnspan=2, sticky="ew", padx=(8, 0), pady=4)
         self.preset_combo.bind("<<ComboboxSelected>>", self._preset_selected)
-        ToolTip(self.preset_combo, "Presets select both a workflow and a parameter map.")
+        ToolTip(self.preset_combo,
+                "Presets select a workflow and can optionally load a parameter map. "
+                "A preset without parameters clears the map.")
         self.workflow_var = tk.StringVar()
         self._file_row(
             group, 1, "Workflow:", self.workflow_var,
@@ -496,7 +498,8 @@ class BatcherApp:
             return
         preset = self.presets[name]
         try:
-            parameters = batch_comfy.load_parameters(preset["parameters"])
+            parameters = (batch_comfy.load_parameters(preset["parameters"])
+                          if preset["parameters"] else [])
         except (OSError, batch_comfy.ConfigurationError) as exc:
             messagebox.showerror("Cannot load preset", str(exc), parent=self.root)
             self.preset_var.set(self.CUSTOM_PRESET)

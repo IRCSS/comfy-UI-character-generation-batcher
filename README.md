@@ -137,13 +137,14 @@ The UI reads and writes both formats. It automatically uses the array form when 
   },
   {
     "name": "Qwen Text to Rigged Character",
-    "workflow": "workflows/qwen_character_api.json",
-    "parameters": "parameters/qwen_character.json"
+    "workflow": "workflows/qwen_character_api.json"
   }
 ]
 ```
 
-Relative paths are resolved relative to `presets.json`, not the current working directory. Absolute paths also work. Preset names must be unique. At startup, every preset is validated: its workflow and parameter files must exist, contain valid JSON, meet their schemas, and reference real node titles and inputs.
+`workflow` is required. `parameters` is optional: omit it, set it to `null`, or use an empty string when that preset needs no parameter overrides. Selecting such a preset clears the parameter map.
+
+Relative paths are resolved relative to `presets.json`, not the current working directory. Absolute paths also work. Preset names must be unique. At startup, every preset is validated: its workflow must exist and be valid, and a parameter file is validated only when one is configured. Configured parameters must reference real node titles and inputs.
 
 Keep the index as `[]` if no defaults are configured. The UI will then show only **Custom**.
 
@@ -241,5 +242,4 @@ The two `.spec` files are source-controlled build definitions and should be comm
 ## Environment notes
 
 Workflow JSON does not bundle checkpoints, VAEs, custom nodes, images, Blender files, or other dependencies. Those resources must exist in the expected ComfyUI locations on the machine running the workflow. The output value must also be acceptable to the nodes used by that workflow; many ComfyUI setups require a subfolder of ComfyUI's output directory.
-
 

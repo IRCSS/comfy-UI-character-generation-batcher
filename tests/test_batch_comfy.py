@@ -75,6 +75,28 @@ class BatcherTests(unittest.TestCase):
             ]), encoding="utf-8")
             preset = batch_comfy.load_presets(folder / "presets.json")[0]
             self.assertEqual(Path(preset["workflow"]), (folder / "workflow.json").resolve())
+            self.assertEqual(Path(preset["parameters"]), (folder / "params.json").resolve())
+
+    def test_preset_parameters_are_optional(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            (folder / "workflow.json").write_text(json.dumps(WORKFLOW), encoding="utf-8")
+            entries = [
+                {"name": "Omitted", "workflow": "workflow.json"},
+                {"name": "Null", "workflow": "workflow.json", "parameters": None},
+                {"name": "Empty", "workflow": "workflow.json", "parameters": ""},
+            ]
+            (folder / "presets.json").write_text(json.dumps(entries), encoding="utf-8")
+            presets = batch_comfy.load_presets(folder / "presets.json")
+            self.assertEqual([preset["parameters"] for preset in presets], [None, None, None])
+
+    def test_preset_workflow_remains_required(self):
+        with tempfile.TemporaryDirectory() as directory:
+            preset_path = Path(directory) / "presets.json"
+            preset_path.write_text('[{"name": "Missing workflow", "parameters": ""}]', encoding="utf-8")
+            with self.assertRaisesRegex(batch_comfy.ConfigurationError,
+                                        r"presets\[0\]\.workflow must be a non-empty path string"):
+                batch_comfy.load_presets(preset_path)
 
     @patch("batch_comfy.time.sleep")
     @patch("batch_comfy.secrets.randbelow", return_value=987654)

@@ -474,13 +474,14 @@ def _concat_prompts(*parts: str) -> str:
     return " ".join(part.strip() for part in parts if isinstance(part, str) and part.strip())
 
 
-def load_presets(path: os.PathLike[str] | str) -> list[dict[str, str]]:
+def load_presets(path: os.PathLike[str] | str) -> list[dict[str, Any]]:
     preset_path = Path(path).expanduser().resolve()
     raw = _load_json(preset_path, "Preset index file")
     if not isinstance(raw, list):
         raise ConfigurationError("Preset index must be a JSON array.")
     presets, names, errors = [], set(), []
     for index, item in enumerate(raw):
+        error_count = len(errors)
         label = f"presets[{index}]"
         if not isinstance(item, dict):
             errors.append(f"{label} must be an object.")
@@ -493,23 +494,39 @@ def load_presets(path: os.PathLike[str] | str) -> list[dict[str, str]]:
             errors.append(f"Preset name '{name}' is duplicated.")
             continue
         names.add(name.casefold())
-        resolved = {"name": name}
-        for key in ("workflow", "parameters"):
-            value = item.get(key)
-            if not isinstance(value, str) or not value.strip():
-                errors.append(f"{label}.{key} must be a non-empty path string.")
-                continue
-            candidate = Path(value).expanduser()
-            if not candidate.is_absolute():
-                candidate = preset_path.parent / candidate
-            candidate = candidate.resolve()
-            if not candidate.is_file():
-                errors.append(f"Preset '{name}' {key} file not found: {candidate}")
-            resolved[key] = str(candidate)
-        if "workflow" in resolved and "parameters" in resolved:
+        resolved: dict[str, Any] = {"name": name, "parameters": None}
+
+        workflow_value = item.get("workflow")
+        if not isinstance(workflow_value, str) or not workflow_value.strip():
+            errors.append(f"{label}.workflow must be a non-empty path string.")
+        else:
+            workflow_path = Path(workflow_value).expanduser()
+            if not workflow_path.is_absolute():
+                workflow_path = preset_path.parent / workflow_path
+            workflow_path = workflow_path.resolve()
+            if not workflow_path.is_file():
+                errors.append(f"Preset '{name}' workflow file not found: {workflow_path}")
+            resolved["workflow"] = str(workflow_path)
+
+        parameter_value = item.get("parameters")
+        if parameter_value is not None and not (
+                isinstance(parameter_value, str) and not parameter_value.strip()):
+            if not isinstance(parameter_value, str):
+                errors.append(f"{label}.parameters must be a path string, null, or empty.")
+            else:
+                parameter_path = Path(parameter_value).expanduser()
+                if not parameter_path.is_absolute():
+                    parameter_path = preset_path.parent / parameter_path
+                parameter_path = parameter_path.resolve()
+                if not parameter_path.is_file():
+                    errors.append(f"Preset '{name}' parameters file not found: {parameter_path}")
+                resolved["parameters"] = str(parameter_path)
+
+        if len(errors) == error_count:
             try:
                 workflow_data = load_workflow(resolved["workflow"])
-                parameter_data = load_parameters(resolved["parameters"])
+                parameter_data = (load_parameters(resolved["parameters"])
+                                  if resolved["parameters"] else [])
                 validate_automatic_targets(workflow_data)
                 validate_parameter_targets(workflow_data, parameter_data)
             except (OSError, ConfigurationError) as exc:
@@ -521,7 +538,7 @@ def load_presets(path: os.PathLike[str] | str) -> list[dict[str, str]]:
     return presets
 
 
-def resolve_preset(path, name: str) -> dict[str, str]:
+def resolve_preset(path, name: str) -> dict[str, Any]:
     for preset in load_presets(path):
         if preset["name"].casefold() == name.casefold():
             return preset
@@ -608,7 +625,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument("--set", dest="overrides", action="append", default=[], type=_parse_cli_parameter,
                         metavar="NODE[::INPUT]=VALUE", help="Set/override one node input; repeat as needed.")
     parser.add_argument("--presets-file", default=str(application_directory() / DEFAULT_PRESET_FILE),
-                        help="Preset index JSON; defaults to presets.json beside the executable.")
+                        help=("Preset index JSON; defaults beside the executable. Each preset requires "
+                              "a workflow, while its parameters path may be omitted, null, or empty."))
     parser.add_argument("--global-settings", default=str(application_directory() / DEFAULT_GLOBAL_SETTINGS_FILE),
                         help="Global settings JSON; defaults beside the executable.")
     parser.add_argument("--server", help="Override the ComfyUI URL from global settings.")
@@ -657,7 +675,8 @@ def main(argv: list[str] | None = None) -> int:
             raise ConfigurationError("--parameters cannot be combined with --preset; use --set for preset overrides.")
         if args.preset:
             preset = resolve_preset(args.presets_file, args.preset)
-            workflow_path, parameters = preset["workflow"], load_parameters(preset["parameters"])
+            workflow_path = preset["workflow"]
+            parameters = load_parameters(preset["parameters"]) if preset["parameters"] else []
         else:
             workflow_path = args.workflow
             parameters = load_parameters(args.parameters) if args.parameters else []
