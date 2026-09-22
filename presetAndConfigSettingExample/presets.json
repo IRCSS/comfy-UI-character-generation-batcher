@@ -1,0 +1,7 @@
+[ 
+  {
+    "name": "Qwen Text to T pose Image Multiview",
+    "workflow": "workflows/Qwen_TextToTPoseCharacterImageMultiView.json",
+    "parameters": "parameters/QwenImageGeneration.json"
+  }
+]

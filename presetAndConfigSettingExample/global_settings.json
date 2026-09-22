@@ -1,0 +1,8 @@
+{
+  "comfy_parent_path": "D:\\ComfyUI_windows_portable_v0.36.0",
+  "launcher": "run_nvidia_gpu.bat",
+  "server_url": "http://127.0.0.1:8188",
+  "startup_timeout_seconds": 300,
+  "comfy_log_file": "comfyui_console.log",
+  "comfy_pid_file": "comfyui_managed.pid"
+}

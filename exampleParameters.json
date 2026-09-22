@@ -1,0 +1,7 @@
+{
+  "Desired Height": 512,
+  "Load Image": {
+    "input": "image",
+    "value": "T-pose.png"
+  }
+}
